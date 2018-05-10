@@ -61,7 +61,7 @@ train_op = optimizer.minimize(loss_op)
 # Evaluate model
 correct_pred = tf.equal(tf.argmax(prediction, 1), tf.argmax(Y, 1))
 accuracy = tf.reduce_mean(tf.cast(correct_pred, tf.float32))
-
+saver = tf.train.Saver()
 # Initialize the variables (i.e. assign their default value)
 init = tf.global_variables_initializer()
 
@@ -83,8 +83,7 @@ with tf.Session() as sess:
             print("Step " + str(step) + ", Minibatch Loss= " + \
                   "{:.4f}".format(loss) + ", Training Accuracy= " + \
                   "{:.3f}".format(acc))
-    with tf.gfile.FastGFile('D:/MMNIST/modelpb.pb',mode = 'wb') as f:
-        f.write(constant_graph.SerializeToString())
+        saver.save(sess,'D:/MMNIST/model2.ckpt.meta')
     print("Optimization Finished!")
 
     # Calculate accuracy for MNIST test images

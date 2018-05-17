@@ -1,4 +1,4 @@
-numpy.random.choice(a, size=None, replace=True, p=None)
+﻿numpy.random.choice(a, size=None, replace=True, p=None)
 a为数组或数字
 size选中的数量
 replace
@@ -44,5 +44,21 @@ min_delta: minimum change in the monitored quantity to qualify as an improvement
 patience: number of epochs with no improvement after which training will be stopped.
 verbose: verbosity mode.
 mode: one of {auto, min, max}. In min mode, training will stop when the quantity monitored has stopped decreasing; in max mode it will stop when the quantity monitored has stopped increasing; in auto mode, the direction is automatically inferred from the name of the monitored quantity.
+pandas.DataFrame.sort_values
+DataFrame.sort_values(by, axis=0, ascending=True, inplace=False, kind='quicksort', na_position='last')
+Sort by the values along either axis
 
+DataFrame.rank(axis=0, method='average', numeric_only=None, na_option='keep', ascending=True, pct=False)
+Compute numerical data ranks (1 through n) along axis. Equal values are assigned a rank that is the average of the ranks of those values
 
+DataFrame.pivot(index=None, columns=None, values=None)
+功能：重塑数据（产生一个“pivot”表格）以列值为标准。使用来自索引/列的唯一的值（去除重复值）为轴形成dataframe结果。
+为了精细调节控制，可以看和stack/unstack方法有关的分层索引文件。在数据分析的时候要记得将pivot结果reset_index()。
+Reshape data (produce a “pivot” table) based on column values. Uses unique values from index / columns to form axes of the resulting DataFrame.
+
+numpy.ceil(x, /, out=None, *, where=True, casting='same_kind', order='K', dtype=None, subok=True[, signature, extobj])
+返回x的值上限 - 不小于x的最小整数。
+对应numpy.round()四舍五入
+int（）取整
+
+Tqdm 是一个快速，可扩展的Python进度条，可以在 Python 长循环中添加一个进度提示信息，用户只需要封装任意的迭代器 tqdm(iterator)。

@@ -3,34 +3,23 @@
 from collections import defaultdict
 import numpy as np
 from sklearn.model_selection import train_test_split
-import pandas as pd
-import numpy as np
 import os
 import glob
 from sklearn.neighbors import NearestNeighbors
 import pandas as pd
-import numpy as np
-from sklearn.model_selection import train_test_split
 from keras import backend as K #使用tensorflow作为后端，相当于tf
 from keras.models import Model
 from keras.layers import Embedding, Flatten, Input, merge
 from keras.optimizers import Adam
 from keras.layers import Conv2D, MaxPooling2D, Input, Dense, Flatten, GlobalMaxPooling2D
-from keras.models import Model
-import glob
-import os
 from PIL import Image
 from keras.callbacks import ModelCheckpoint, LearningRateScheduler, EarlyStopping, ReduceLROnPlateau, TensorBoard
 from keras import optimizers, losses, activations, models
 from keras.layers import Convolution2D, Dense, Input, Flatten, Dropout, MaxPooling2D, BatchNormalization, \
     GlobalMaxPool2D, Concatenate, GlobalMaxPooling2D, GlobalAveragePooling2D, Lambda
 from keras.applications.resnet50 import ResNet50
-import pandas as pd
-import numpy as np
-import os
-import glob
-from sklearn.neighbors import NearestNeighbors  
-
+model = ResNet50(weights='imagenet')  
+  
 class sample_gen(object):
     def __init__(self, file_class_mapping, other_class = "new_whale"):
     	#使用文件名和id组成的字典作为函数的输入参数
@@ -76,7 +65,7 @@ class sample_gen(object):
 
 batch_size = 8
 input_shape = (256, 256)
-base_path = "../input/train/"
+base_path = "D:/tens/kraggle/whaletrain/"
 def identity_loss(y_true, y_pred):
 
     return K.mean(y_pred - 0 * y_true)
@@ -219,7 +208,7 @@ def gen(triplet_gen):
 num_epochs = 10
 
 # Read data
-data = pd.read_csv('../input/train.csv')
+data = pd.read_csv('D:/tens/kraggle/whale/train.csv')
 train, test = train_test_split(data, test_size=0.3, shuffle=True, random_state=1337)
 file_id_mapping_train = {k: v for k, v in zip(train.Image.values, train.Id.values)}
 file_id_mapping_test = {k: v for k, v in zip(test.Image.values, test.Id.values)}
@@ -266,14 +255,14 @@ def data_generator(fpaths, batch=16):
         yield fnames, imgs
     raise StopIteration()
 
-data = pd.read_csv('../input/train.csv')
+data = pd.read_csv('D:/tens/kraggle/whale/train.csv')
 
 file_id_mapping = {k: v for k, v in zip(data.Image.values, data.Id.values)}
 
 inference_model = build_inference_model()
 
-train_files = glob.glob("../input/train/*.jpg")
-test_files = glob.glob("../input/test/*.jpg")
+train_files = glob.glob("D:/tens/kraggle/whaletrain/*.jpg")
+test_files = glob.glob("D:/tens/kraggle/whaletest/*.jpg")
 
 train_preds = []
 train_file_names = []
